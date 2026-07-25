@@ -7,6 +7,8 @@ interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   tone?: "paper" | "ridge" | "night";
   border?: "none" | "top";
   as?: "section" | "div";
+  /** Adds the faint noise texture used across sections for perceived material quality. */
+  noise?: boolean;
 }
 
 const toneMap = {
@@ -20,23 +22,38 @@ export function Section({
   tone = "paper",
   border = "none",
   as = "section",
+  noise = true,
   className,
   children,
   ...props
 }: SectionProps) {
   const Comp = as;
+  const isDark = tone === "night";
+
   return (
     <Comp
       id={id}
-      className={cn(
-        "py-24 md:py-28",
-        toneMap[tone],
-        border === "top" && (tone === "night" ? "border-t border-line-dark" : "border-t border-line"),
-        className
-      )}
+      className={cn("relative py-24 md:py-28 lg:py-32", toneMap[tone], className)}
       {...props}
     >
-      <Container>{children}</Container>
+      {border === "top" && (
+        <span
+          className={cn(
+            "absolute inset-x-0 top-0 h-px",
+            isDark ? "divider-fade-dark" : "divider-fade"
+          )}
+          aria-hidden="true"
+        />
+      )}
+
+      {noise && (
+        <span
+          className="pointer-events-none absolute inset-0 bg-noise"
+          aria-hidden="true"
+        />
+      )}
+
+      <Container className="relative">{children}</Container>
     </Comp>
   );
 }

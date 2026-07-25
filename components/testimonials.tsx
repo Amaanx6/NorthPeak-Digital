@@ -2,17 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
-import { Reveal, RevealGroup } from "@/components/ui/reveal";
+import { Reveal, RevealGroup, SCALE_FADE } from "@/components/ui/reveal";
 import { Heading } from "@/components/ui/heading";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "@/components/ui/section";
 import { TESTIMONIALS } from "@/data/site";
-
-const SOFT_FADE = {
-  hidden: { opacity: 0, scale: 0.97 },
-  visible: { opacity: 1, scale: 1 },
-};
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -80,7 +75,7 @@ export function Testimonials() {
           {supporting.map((testimonial) => (
             <motion.div
               key={testimonial.name}
-              variants={SOFT_FADE}
+              variants={SCALE_FADE}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
               <Card className="flex h-full flex-col justify-between">

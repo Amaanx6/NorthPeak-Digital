@@ -121,7 +121,7 @@ export function Services() {
 
           return (
             <div key={rowStart}>
-              <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
                 {row.services.map((service, localIndex) => {
                   const index = rowStart + localIndex;
                   const Icon = service.icon;

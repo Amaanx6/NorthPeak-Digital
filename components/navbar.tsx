@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mountain, Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { NAV_LINKS, SITE_NAME } from "@/data/site";
 
 export default function Navbar() {
@@ -10,6 +11,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [heroVisible, setHeroVisible] = useState(true);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -42,6 +44,22 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  // Navbar only exists while the Hero is on screen — fades/slides away once
+  // it scrolls out, and returns when scrolling back up. Reuses the same
+  // IntersectionObserver pattern as the scroll-spy above; no new deps.
+  useEffect(() => {
+    const hero = document.querySelector("#top");
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroVisible(entry.isIntersecting),
+      { threshold: 0, rootMargin: "-10% 0px 0px 0px" }
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
 
@@ -52,7 +70,13 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-5">
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-5 transition-all duration-500 ease-premium",
+          heroVisible ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-6 opacity-0"
+        )}
+        aria-hidden={!heroVisible}
+      >
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -64,12 +88,12 @@ export default function Navbar() {
             scrolled ? "shadow-elevate" : ""
           }`}
         >
-          <a href="#top" className="flex shrink-0 items-center gap-2 pl-2" aria-label="NorthPeak Digital Home">
+          <a href="#top" className="flex shrink-0 items-center gap-2 pl-1 sm:pl-2" aria-label="NorthPeak Digital Home">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-alpine-600 text-paper">
               <Mountain className="h-[18px] w-[18px]" />
             </span>
-                <span className="hidden font-display text-[15px] font-semibold tracking-tight text-ink sm:inline">
-                {SITE_NAME}
+            <span className="font-display text-sm font-semibold tracking-tight text-ink sm:text-[15px]">
+              {SITE_NAME}
             </span>
           </a>
 
@@ -123,6 +147,7 @@ export default function Navbar() {
             <button
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
+              tabIndex={heroVisible ? 0 : -1}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-ridge lg:hidden"
             >
               <Menu className="h-4 w-4" />

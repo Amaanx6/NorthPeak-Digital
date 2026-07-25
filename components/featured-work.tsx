@@ -12,7 +12,7 @@ import {
   Bell,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Reveal, RevealGroup, FADE_UP } from "@/components/ui/reveal";
+import { Reveal, RevealGroup, FADE_UP, SLIDE_LEFT, SLIDE_RIGHT, EASE_PREMIUM } from "@/components/ui/reveal";
 import { Heading } from "@/components/ui/heading";
 import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
@@ -50,10 +50,6 @@ const ACTIVITY_FEED = [
 
 const CARD_RHYTHM = ["", "sm:rotate-[0.6deg] sm:hover:rotate-0", "sm:-translate-y-2 sm:border-alpine-300 sm:shadow-elevate-lg"];
 
-const SLIDE_LEFT = { hidden: { opacity: 0, x: -28 }, visible: { opacity: 1, x: 0 } };
-const SLIDE_RIGHT = { hidden: { opacity: 0, x: 28 }, visible: { opacity: 1, x: 0 } };
-const EASE = [0.16, 1, 0.3, 1] as const;
-
 export function FeaturedWork() {
   return (
     <Section id="work" tone="ridge" border="top">
@@ -67,7 +63,7 @@ export function FeaturedWork() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={SLIDE_RIGHT}
-          transition={{ duration: 0.6, ease: EASE }}
+          transition={{ duration: 0.6, ease: EASE_PREMIUM }}
           className="overflow-hidden rounded-3xl border border-line bg-night shadow-elevate-lg"
         >
           {/* Product chrome — no browser dots, reads as a real app */}
@@ -93,7 +89,7 @@ export function FeaturedWork() {
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.45, delay: 0.15 + index * 0.08, ease: EASE }}
+                  transition={{ duration: 0.45, delay: 0.15 + index * 0.08, ease: EASE_PREMIUM }}
                   className="rounded-2xl border border-line-dark bg-white/[0.04] p-4"
                 >
                   <div className="flex items-center justify-between">
@@ -156,7 +152,7 @@ export function FeaturedWork() {
                   initial={{ pathLength: 0 }}
                   whileInView={{ pathLength: 1 }}
                   viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 1, delay: 0.3, ease: EASE }}
+                  transition={{ duration: 1, delay: 0.3, ease: EASE_PREMIUM }}
                 />
               </svg>
             </div>
@@ -172,7 +168,7 @@ export function FeaturedWork() {
                     initial={{ scaleY: 0 }}
                     whileInView={{ scaleY: 1 }}
                     viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.4, delay: 0.3 + index * 0.05, ease: EASE }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.05, ease: EASE_PREMIUM }}
                     style={{ height: `${value}%`, transformOrigin: "bottom" }}
                     className="w-full rounded-sm bg-alpine-500/50"
                   />
@@ -213,7 +209,7 @@ export function FeaturedWork() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={SLIDE_LEFT}
-          transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
+          transition={{ duration: 0.6, ease: EASE_PREMIUM, delay: 0.1 }}
         >
           <p className="text-base leading-[1.75] text-ink-soft">{FEATURED_PROJECT.description}</p>
 
