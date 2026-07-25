@@ -38,42 +38,168 @@ export const SERVICES: Service[] = [
     category: "Engineering",
     title: "Web Development",
     description:
-      "Fast, resilient product builds on modern frameworks — engineered for scale from the first commit, not retrofitted later.",
+      "Fast, resilient product builds on modern frameworks engineered for scale from the first commit.",
+
+    details: {
+      overview:
+        "We build fast, secure and scalable web applications using modern frameworks. Every project is optimized for performance, accessibility and long-term maintainability.",
+
+      deliverables: [
+        "Responsive website development",
+        "Full-stack web applications",
+        "REST & GraphQL APIs",
+        "Authentication & authorization",
+        "Performance optimization",
+        "Deployment & CI/CD",
+      ],
+
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Tailwind CSS",
+      ],
+    },
   },
+
   {
     icon: Palette,
     category: "Design",
     title: "UI/UX Design",
     description:
-      "Interfaces designed around how people actually work, backed by research and validated with real users before a line of code ships.",
+      "Interfaces designed around real users before a single line of code ships.",
+
+    details: {
+      overview:
+        "We design interfaces that are simple, accessible and validated with users before development begins.",
+
+      deliverables: [
+        "User Research",
+        "Wireframes",
+        "High Fidelity UI",
+        "Design Systems",
+        "Interactive Prototypes",
+      ],
+
+      technologies: [
+        "Figma",
+        "FigJam",
+        "Adobe XD",
+      ],
+    },
   },
+
   {
     icon: Cloud,
     category: "Infrastructure",
     title: "Cloud Solutions",
     description:
-      "Infrastructure that scales with demand and stays boring in the best way — reliable, observable, and cost-aware by default.",
+      "Reliable cloud infrastructure built for scalability and cost efficiency.",
+
+    details: {
+      overview:
+        "We architect cloud infrastructure that is secure, observable and easy to scale.",
+
+      deliverables: [
+        "Cloud Migration",
+        "Infrastructure as Code",
+        "Monitoring",
+        "CI/CD",
+        "Auto Scaling",
+      ],
+
+      technologies: [
+        "AWS",
+        "Docker",
+        "Terraform",
+        "Kubernetes",
+      ],
+    },
   },
+
   {
     icon: TrendingUp,
     category: "Growth",
     title: "SEO",
     description:
-      "Technical and content strategy built on how search actually ranks pages today, not recycled tactics from five years ago.",
+      "Technical SEO focused on modern search ranking factors.",
+
+    details: {
+      overview:
+        "We improve technical SEO, page performance and content structure to increase organic visibility.",
+
+      deliverables: [
+        "Technical Audit",
+        "Keyword Research",
+        "Schema Markup",
+        "Content Strategy",
+        "Core Web Vitals",
+      ],
+
+      technologies: [
+        "Google Search Console",
+        "GA4",
+        "Ahrefs",
+        "Semrush",
+      ],
+    },
   },
+
   {
     icon: Workflow,
     category: "Operations",
     title: "Automation",
     description:
-      "We remove the manual steps between your teams and their tools, so work moves forward without someone pushing it.",
+      "Remove repetitive work with intelligent workflow automation.",
+
+    details: {
+      overview:
+        "We connect your tools and automate repetitive business processes.",
+
+      deliverables: [
+        "Workflow Design",
+        "CRM Automation",
+        "Email Automation",
+        "API Integrations",
+        "Custom Scripts",
+      ],
+
+      technologies: [
+        "Zapier",
+        "Make",
+        "Node.js",
+        "Python",
+      ],
+    },
   },
+
   {
     icon: BarChart3,
     category: "Insight",
     title: "Analytics",
     description:
-      "Dashboards and reporting that answer the questions your team actually asks, instead of burying them in vanity metrics.",
+      "Actionable dashboards that answer business questions.",
+
+    details: {
+      overview:
+        "We build dashboards that track the KPIs your team actually cares about.",
+
+      deliverables: [
+        "GA4 Setup",
+        "Business Dashboards",
+        "Custom Reports",
+        "Conversion Tracking",
+      ],
+
+      technologies: [
+        "GA4",
+        "Looker Studio",
+        "Power BI",
+        "BigQuery",
+      ],
+    },
   },
 ];
 

@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+
 import { Reveal, RevealGroup, FADE_UP } from "@/components/ui/reveal";
 import { Heading } from "@/components/ui/heading";
 import { Card } from "@/components/ui/card";
@@ -10,49 +12,176 @@ import { Section } from "@/components/ui/section";
 import { SERVICES } from "@/data/site";
 
 export function Services() {
+  const [selected, setSelected] = useState<number | null>(null);
+
+  // Split services into rows of 3
+  const rows = [];
+  for (let i = 0; i < SERVICES.length; i += 3) {
+    rows.push({
+      services: SERVICES.slice(i, i + 3),
+      startIndex: i,
+    });
+  }
+
+  const renderDetails = (index: number) => {
+    const service = SERVICES[index];
+
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={service.title}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 24 }}
+          transition={{ duration: 0.35 }}
+          className="mt-6"
+        >
+          <Card className="overflow-hidden">
+            <div className="grid gap-10 lg:grid-cols-[2fr_1fr]">
+              <div>
+                <Badge>{service.category}</Badge>
+
+                <h3 className="mt-4 font-display text-3xl font-semibold">
+                  {service.title}
+                </h3>
+
+                <p className="mt-6 max-w-3xl leading-8 text-ink-soft">
+                  {service.details.overview}
+                </p>
+
+                <h4 className="mt-10 text-lg font-semibold">
+                  Deliverables
+                </h4>
+
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {service.details.deliverables.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-xl border border-stone-200 bg-paper px-4 py-3 text-sm"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold">
+                  Technologies
+                </h4>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {service.details.technologies.map((tech) => (
+                    <Badge key={tech}>{tech}</Badge>
+                  ))}
+                </div>
+
+                <div className="mt-10 rounded-2xl bg-alpine-50 p-6">
+                  <h5 className="font-semibold text-alpine-800">
+                    Typical engagement
+                  </h5>
+
+                  <p className="mt-3 text-sm leading-7 text-alpine-700">
+                    Discovery, planning, implementation,
+                    testing, deployment, documentation and
+                    ongoing support.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </motion.div>
+      </AnimatePresence>
+    );
+  };
+
   return (
     <Section id="services" tone="paper">
       <Reveal>
         <Heading
           eyebrow="Services"
           title="Six disciplines, one accountable team."
-          description="Every engagement draws from the same pool of senior engineers, designers, and strategists — so nothing gets lost at a handoff."
+          description="Every engagement draws from the same pool of senior engineers, designers, and strategists."
           maxWidth="max-w-xl"
         />
       </Reveal>
 
-      <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {SERVICES.map((service) => {
-          const Icon = service.icon;
+      <div className="mt-14 space-y-8">
+        {rows.map((row, rowIndex) => {
+          const rowStart = row.startIndex;
+          const rowEnd = rowStart + row.services.length - 1;
+
+          const activeInRow =
+            selected !== null &&
+            selected >= rowStart &&
+            selected <= rowEnd;
+
           return (
-            <motion.div key={service.title} variants={FADE_UP} transition={{ duration: 0.5, ease: "easeOut" }}>
-              <Card hoverable className="group h-full">
-                <div className="flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-alpine-50 text-alpine-700 transition-colors duration-300 ease-premium group-hover:bg-alpine-600 group-hover:text-paper">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <Badge>{service.category}</Badge>
-                </div>
+            <div key={rowStart}>
+              <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {row.services.map((service, localIndex) => {
+                  const index = rowStart + localIndex;
+                  const Icon = service.icon;
 
-                <h3 className="mt-6 font-display text-lg font-semibold text-ink">
-                  {service.title}
-                </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">
-                  {service.description}
-                </p>
+                  return (
+                    <motion.div
+                      key={service.title}
+                      variants={FADE_UP}
+                      transition={{
+                        duration: 0.45,
+                      }}
+                    >
+                      <Card
+                        hoverable
+                        onClick={() =>
+                          setSelected(
+                            selected === index ? null : index
+                          )
+                        }
+                        className={`group h-full cursor-pointer transition-all ${
+                          selected === index
+                            ? "border-alpine-600 ring-1 ring-alpine-600"
+                            : ""
+                        }`}
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-alpine-50 text-alpine-700 transition-colors duration-300 group-hover:bg-alpine-600 group-hover:text-paper">
+                            <Icon className="h-5 w-5" />
+                          </div>
 
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-alpine-700">
-                  Learn more
-                  <ArrowRight
-                    className="h-3.5 w-3.5 transition-transform duration-300 ease-premium group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </span>
-              </Card>
-            </motion.div>
+                          <Badge>{service.category}</Badge>
+                        </div>
+
+                        <h3 className="mt-6 font-display text-lg font-semibold text-ink">
+                          {service.title}
+                        </h3>
+
+                        <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">
+                          {service.description}
+                        </p>
+
+                        <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-alpine-700">
+                          Learn more
+
+                          <ArrowRight
+                            className={`h-4 w-4 transition-transform duration-300 ${
+                              selected === index
+                                ? "rotate-90"
+                                : "group-hover:translate-x-1"
+                            }`}
+                          />
+                        </div>
+                      </Card>
+                    </motion.div>
+                  );
+                })}
+              </RevealGroup>
+
+              {activeInRow && renderDetails(selected)}
+            </div>
           );
         })}
-      </RevealGroup>
+      </div>
     </Section>
   );
 }

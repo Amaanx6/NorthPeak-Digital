@@ -39,10 +39,15 @@ export interface Metric {
 }
 
 export interface Service {
+  icon: LucideIcon;
+  category: string;
   title: string;
   description: string;
-  category: string;
-  icon: LucideIcon;
+  details: {
+    overview: string;
+    deliverables: string[];
+    technologies: string[];
+  };
 }
 
 export interface Project {
