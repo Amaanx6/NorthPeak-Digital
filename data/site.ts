@@ -1,36 +1,213 @@
 import {
-  Mail,
-  MapPin,
-  Phone,
+  Code2,
+  Palette,
+  Cloud,
+  TrendingUp,
+  Workflow,
+  BarChart3,
   Github,
   Linkedin,
   Twitter,
-  Code2,
-  Palette,
-  TrendingUp,
-  Cloud,
-  Boxes,
-  ShieldCheck,
+  Mail,
+  Phone,
+  MapPin,
 } from "lucide-react";
 import type {
-  ContactDetail,
   NavLink,
-  SocialLink,
-  Metric,
   Service,
-  Project,
   Testimonial,
   PricingPlan,
+  SocialLink,
+  Metric,
+  Project,
+  ContactDetail,
 } from "@/types";
 
 export const SITE_NAME = "NorthPeak Digital";
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Home", href: "#top" },
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
   { label: "Pricing", href: "#pricing" },
   { label: "Contact", href: "#contact" },
+];
+
+export const SERVICES: Service[] = [
+  {
+    icon: Code2,
+    category: "Engineering",
+    title: "Web Development",
+    description:
+      "Fast, resilient product builds on modern frameworks — engineered for scale from the first commit, not retrofitted later.",
+  },
+  {
+    icon: Palette,
+    category: "Design",
+    title: "UI/UX Design",
+    description:
+      "Interfaces designed around how people actually work, backed by research and validated with real users before a line of code ships.",
+  },
+  {
+    icon: Cloud,
+    category: "Infrastructure",
+    title: "Cloud Solutions",
+    description:
+      "Infrastructure that scales with demand and stays boring in the best way — reliable, observable, and cost-aware by default.",
+  },
+  {
+    icon: TrendingUp,
+    category: "Growth",
+    title: "SEO",
+    description:
+      "Technical and content strategy built on how search actually ranks pages today, not recycled tactics from five years ago.",
+  },
+  {
+    icon: Workflow,
+    category: "Operations",
+    title: "Automation",
+    description:
+      "We remove the manual steps between your teams and their tools, so work moves forward without someone pushing it.",
+  },
+  {
+    icon: BarChart3,
+    category: "Insight",
+    title: "Analytics",
+    description:
+      "Dashboards and reporting that answer the questions your team actually asks, instead of burying them in vanity metrics.",
+  },
+];
+
+export const METRICS: Metric[] = [
+  { value: 120, suffix: "+", decimals: 0, label: "Projects delivered" },
+  { value: 99.98, suffix: "%", decimals: 2, label: "Infrastructure uptime" },
+  { value: 31, suffix: " yrs", decimals: 0, label: "Combined team experience" },
+  { value: 96, suffix: "%", decimals: 0, label: "Client retention" },
+];
+
+export const FEATURED_PROJECT: Project = {
+  title: "Fieldstack — onboarding rebuild",
+  description:
+    "Fieldstack's activation dropped off hard between signup and first project created. We rebuilt the onboarding path around a single guided setup flow, cut the steps to first value in half, and shipped it in six weeks alongside their team.",
+  tech: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
+  metricValue: "+34%",
+  metricLabel: "activation within 30 days",
+};
+
+export const SUPPORTING_PROJECTS: Project[] = [
+  {
+    title: "Ledgerly — cloud cost rework",
+    description:
+      "Re-architected autoscaling and storage tiers so spend tracks usage instead of peak provisioning.",
+    tech: ["AWS", "Terraform"],
+    metricValue: "−41%",
+    metricLabel: "monthly infra cost",
+  },
+  {
+    title: "Marrow Health — design system",
+    description:
+      "Built a shared component library so design and engineering ship from the same source of truth.",
+    tech: ["Figma", "React", "Storybook"],
+    metricValue: "3.2×",
+    metricLabel: "faster feature turnaround",
+  },
+  {
+    title: "Ridgeline — search visibility",
+    description:
+      "Technical SEO overhaul and content restructuring across 400+ product pages.",
+    tech: ["Next.js", "Schema.org"],
+    metricValue: "+180%",
+    metricLabel: "organic sessions, 6 months",
+  },
+];
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    name: "Priya Menon",
+    role: "VP of Product",
+    company: "Fieldstack",
+    initials: "PM",
+    rating: 5,
+    projectType: "Onboarding rebuild",
+    featured: true,
+    review:
+      "NorthPeak rebuilt our onboarding flow in six weeks and activation went up by a third the month it shipped. They think like an in-house team, not a vendor — the handoff notes alone were more thorough than what our last two agencies delivered as final documentation.",
+  },
+  {
+    name: "Daniel Ortiz",
+    role: "Head of Engineering",
+    company: "Ledgerly",
+    initials: "DO",
+    rating: 5,
+    projectType: "Cloud infrastructure",
+    review:
+      "Our infrastructure costs were unpredictable every quarter. NorthPeak's cloud rework gave us a system we can actually forecast against, and it hasn't paged us since.",
+  },
+  {
+    name: "Sarah Whitfield",
+    role: "Founder",
+    company: "Marrow Health",
+    initials: "SW",
+    rating: 5,
+    projectType: "Design system",
+    review:
+      "We came in for a redesign and left with a design system our whole team still uses today. Clear communication at every stage, no surprises at handoff.",
+  },
+];
+
+export const CONTACT_DETAILS: ContactDetail[] = [
+  { icon: Mail, label: "Email", value: "studio@northpeak.digital" },
+  { icon: Phone, label: "Phone", value: "+1 (415) 555-0148" },
+  { icon: MapPin, label: "Office", value: "San Francisco, CA" },
+];
+
+export const RESPONSE_TIME = "Under one business day";
+export const AVAILABILITY_STATUS = "Booking projects for Q4";
+
+export const PRICING_PLANS: PricingPlan[] = [
+  {
+    name: "Starter",
+    price: "$2,400",
+    period: "/mo",
+    description: "For small teams shipping a focused product surface.",
+    features: [
+      "One active workstream",
+      "Web development or design",
+      "Async updates, weekly check-in",
+      "Standard support hours",
+    ],
+    highlighted: false,
+    ctaLabel: "Get started",
+  },
+  {
+    name: "Growth",
+    price: "$6,800",
+    period: "/mo",
+    description: "For teams that need design, build, and infra moving together.",
+    features: [
+      "Two concurrent workstreams",
+      "Full-stack build and design",
+      "Cloud architecture included",
+      "Dedicated engagement lead",
+      "Priority support hours",
+    ],
+    highlighted: true,
+    ctaLabel: "Start with Growth",
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    period: "",
+    description: "For organizations with complex, multi-team roadmaps.",
+    features: [
+      "Unlimited workstreams",
+      "Dedicated senior pod",
+      "Security and compliance review",
+      "SLA-backed response times",
+      "Quarterly strategy reviews",
+    ],
+    highlighted: false,
+    ctaLabel: "Talk to sales",
+  },
 ];
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -40,172 +217,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ];
 
 export const FOOTER_TRAINING_LINK = {
-  label: "Engineering notes",
-  href: "#work",
+  label: "Built for Digital Heroes Training Task",
+  href: "https://digitalheroesco.com",
 };
-
-export const CONTACT_DETAILS: ContactDetail[] = [
-  { label: "Email", value: "hello@northpeak.digital", icon: Mail },
-  { label: "Phone", value: "+1 (415) 555-0148", icon: Phone },
-  { label: "Studio", value: "San Francisco, CA", icon: MapPin },
-];
-
-export const RESPONSE_TIME = "Under 24 hours";
-export const AVAILABILITY_STATUS = "Booking Q4 now";
-
-export const METRICS: Metric[] = [
-  { label: "Products shipped", value: 128, suffix: "+" },
-  { label: "Average uptime", value: 99.98, suffix: "%", decimals: 2 },
-  { label: "Client retention", value: 94, suffix: "%" },
-  { label: "Years in practice", value: 9 },
-];
-
-export const SERVICES: Service[] = [
-  {
-    title: "Web Development",
-    description:
-      "Fast, accessible interfaces built on modern frameworks and typed from the ground up.",
-    category: "Build",
-    icon: Code2,
-  },
-  {
-    title: "Product Design",
-    description:
-      "Interface and interaction design grounded in real usage data, not just aesthetics.",
-    category: "Design",
-    icon: Palette,
-  },
-  {
-    title: "Growth Strategy",
-    description:
-      "Positioning, funnels, and lifecycle work that compounds instead of one-off campaigns.",
-    category: "Strategy",
-    icon: TrendingUp,
-  },
-  {
-    title: "Cloud Infrastructure",
-    description:
-      "Provisioned, monitored, and cost-optimized environments that hold up under real load.",
-    category: "Engineer",
-    icon: Cloud,
-  },
-  {
-    title: "Design Systems",
-    description:
-      "Component libraries and documentation so every future release stays consistent.",
-    category: "Design",
-    icon: Boxes,
-  },
-  {
-    title: "Security & Compliance",
-    description:
-      "Audits, hardening, and SOC 2 readiness handled alongside your existing roadmap.",
-    category: "Engineer",
-    icon: ShieldCheck,
-  },
-];
-
-export const FEATURED_PROJECT: Project = {
-  description: "Fieldstack came to us with a five-step onboarding flow that lost a third of new accounts before activation. We rebuilt the setup experience around progressive disclosure and shipped a redesigned dashboard alongside it — cutting time-to-first-value from eleven minutes to under three.",
-  tech: ["Next.js", "PostgreSQL", "Temporal", "AWS"],
-  metricValue: "+68%",
-  metricLabel: "activation rate",
-  title: ""
-};
-
-export const SUPPORTING_PROJECTS: Project[] = [
-  {
-    title: "Ledgerly",
-    description: "Rebuilt the billing core to support usage-based pricing across four tiers.",
-    tech: ["Rails", "Stripe"],
-    metricValue: "3.1×",
-    metricLabel: "faster billing runs",
-  },
-  {
-    title: "Harborview",
-    description: "Migrated a legacy monolith to a modular architecture with zero downtime.",
-    tech: ["Go", "Kubernetes"],
-    metricValue: "0",
-    metricLabel: "minutes of downtime",
-  },
-  {
-    title: "Cairn",
-    description: "Designed and built a component library adopted across six product teams.",
-    tech: ["React", "Storybook"],
-    metricValue: "42",
-    metricLabel: "shared components",
-  },
-];
-
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    name: "Priya Nandakumar",
-    role: "VP of Product, Fieldstack",
-    company: "Fieldstack",
-    review:
-      "NorthPeak treated our onboarding funnel like an engineering problem, not a design favor. They shipped in six weeks what our last agency quoted at four months — and the numbers held up.",
-    rating: 5,
-    initials: "PN",
-    featured: true,
-    projectType: "Product redesign",
-  },
-  {
-    name: "Marcus Ito",
-    role: "CTO, Ledgerly",
-    company: "Ledgerly",
-    review: "Senior engineers end to end. No handoffs, no juniors learning on our codebase.",
-    rating: 5,
-    initials: "MI",
-  },
-  {
-    name: "Sasha Brandt",
-    role: "Founder, Harborview",
-    company: "Harborview",
-    review: "They found the migration risks we hadn't thought of, then quietly solved them.",
-    rating: 5,
-    initials: "SB",
-  },
-];
-
-export const PRICING_PLANS: PricingPlan[] = [
-  {
-    name: "Foundation",
-    description: "A single workstream for teams validating a new product surface.",
-    price: "$14K",
-    period: "/mo",
-    features: [
-      "One dedicated engineer + designer",
-      "Weekly release cadence",
-      "Async Slack collaboration",
-      "Monthly strategy review",
-    ],
-    ctaLabel: "Start with Foundation",
-  },
-  {
-    name: "Ascent",
-    description: "Two workstreams running in parallel for teams past initial traction.",
-    price: "$26K",
-    period: "/mo",
-    features: [
-      "Two dedicated workstreams",
-      "Senior engineering + design pod",
-      "Dedicated infrastructure support",
-      "Bi-weekly roadmap planning",
-      "Priority response, under 4 hours",
-    ],
-    ctaLabel: "Start with Ascent",
-    highlighted: true,
-  },
-  {
-    name: "Summit",
-    description: "Embedded, multi-team engagement for scaling platforms.",
-    price: "Custom",
-    features: [
-      "Three or more workstreams",
-      "Dedicated engagement lead",
-      "Custom SLAs & compliance support",
-      "Quarterly architecture review",
-    ],
-    ctaLabel: "Talk to us",
-  },
-];

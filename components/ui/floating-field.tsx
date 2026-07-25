@@ -37,26 +37,28 @@ export function FloatingField(props: FloatingFieldProps) {
     invalid = false,
     errorId,
     className,
+    multiline,
+    ...fieldProps
   } = props;
 
   const [focused, setFocused] = useState(false);
 
-  const filled = Boolean(props.value);
+  const filled = Boolean(fieldProps.value);
   const floated = focused || filled;
 
   const sharedClassName = cn(
     "peer w-full rounded-xl border bg-paper px-4 pb-2.5 pt-6 text-sm text-ink outline-none transition-colors duration-200",
     "focus:border-alpine-500",
     invalid ? "border-signal" : "border-line",
-    props.multiline && "min-h-[128px] resize-none",
+    multiline && "min-h-[128px] resize-none",
     className
   );
 
   return (
     <div className="relative">
-      {props.multiline ? (
+      {multiline ? (
         <textarea
-          {...props}
+          {...fieldProps}
           id={id}
           className={sharedClassName}
           aria-invalid={invalid}
@@ -66,7 +68,7 @@ export function FloatingField(props: FloatingFieldProps) {
         />
       ) : (
         <input
-          {...props}
+          {...fieldProps}
           id={id}
           className={sharedClassName}
           aria-invalid={invalid}
@@ -83,7 +85,7 @@ export function FloatingField(props: FloatingFieldProps) {
           floated
             ? "top-2.5 text-[11px]"
             : "top-1/2 -translate-y-1/2 text-sm",
-          props.multiline && !floated && "top-6"
+          multiline && !floated && "top-6"
         )}
       >
         {label}
