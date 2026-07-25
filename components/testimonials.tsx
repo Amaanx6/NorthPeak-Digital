@@ -2,20 +2,21 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
-import { Reveal, RevealGroup, FADE_UP } from "@/components/ui/reveal";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 import { Heading } from "@/components/ui/heading";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Section } from "@/components/ui/section";
 import { TESTIMONIALS } from "@/data/site";
 
+const SOFT_FADE = {
+  hidden: { opacity: 0, scale: 0.97 },
+  visible: { opacity: 1, scale: 1 },
+};
+
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div 
-      className="flex gap-0.5" 
-      role="img" 
-      aria-label={`${rating} out of 5 stars`}
-    >
+    <div className="flex gap-0.5" role="img" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }).map((_, index) => (
         <Star
           key={index}
@@ -54,9 +55,7 @@ export function Testimonials() {
                 <StarRating rating={featured.rating} />
               </div>
               <Quote className="mt-6 h-7 w-7 text-alpine-400" aria-hidden="true" />
-              <p className="mt-4 max-w-[54ch] text-xl leading-[1.6] text-ink">
-                {featured.review}
-              </p>
+              <p className="mt-4 max-w-[54ch] text-xl leading-[1.6] text-ink">{featured.review}</p>
             </div>
 
             <div className="mt-8 flex items-center justify-between border-t border-line pt-6">
@@ -77,9 +76,13 @@ export function Testimonials() {
           </Card>
         </Reveal>
 
-        <RevealGroup className="flex flex-col gap-6" staggerDelay={0.12}>
+        <RevealGroup className="flex flex-col gap-6" staggerDelay={0.1}>
           {supporting.map((testimonial) => (
-            <motion.div key={testimonial.name} variants={FADE_UP} transition={{ duration: 0.5, ease: "easeOut" }}>
+            <motion.div
+              key={testimonial.name}
+              variants={SOFT_FADE}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
               <Card className="flex h-full flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between">
@@ -88,9 +91,7 @@ export function Testimonials() {
                     </span>
                     <StarRating rating={testimonial.rating} />
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-ink-soft">
-                    {testimonial.review}
-                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-ink-soft">{testimonial.review}</p>
                 </div>
                 <div className="mt-6 flex items-center justify-between border-t border-line pt-5">
                   <div className="flex items-center gap-2.5">
