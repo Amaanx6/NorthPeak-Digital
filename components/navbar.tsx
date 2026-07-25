@@ -9,6 +9,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -17,6 +18,28 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = NAV_LINKS.map((link) => document.querySelector(link.href)).filter(
+      (el): el is Element => Boolean(el)
+    );
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -41,13 +64,12 @@ export default function Navbar() {
             scrolled ? "shadow-elevate" : ""
           }`}
         >
-          <a href="#top" className="flex shrink-0 items-center gap-2 pl-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-alpine-600 text-paper">
-              <Mountain className="h-4 w-4" />
+          <a href="#top" className="flex shrink-0 items-center gap-2 pl-2" aria-label="NorthPeak Digital Home">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-alpine-600 text-paper">
+              <Mountain className="h-[18px] w-[18px]" />
             </span>
-
-            <span className="hidden font-display text-[15px] font-semibold tracking-tight text-ink sm:inline">
-              {SITE_NAME}
+                <span className="hidden font-display text-[15px] font-semibold tracking-tight text-ink sm:inline">
+                {SITE_NAME}
             </span>
           </a>
 
@@ -61,7 +83,8 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onMouseEnter={() => setHovered(link.label)}
-                className="relative isolate rounded-pill px-4 py-2 text-sm font-medium text-ink-soft transition-colors duration-200 hover:text-ink"
+                aria-current={activeSection === link.href ? "true" : undefined}
+                className="relative isolate rounded-pill px-4 py-2 text-sm font-medium text-ink-soft transition-colors duration-200 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alpine-400 focus-visible:ring-offset-2 focus-visible:ring-offset-card"
               >
                 {hovered === link.label && (
                   <motion.span
@@ -76,7 +99,15 @@ export default function Navbar() {
                   />
                 )}
 
-                <span className="relative z-10">{link.label}</span>
+                <span className="relative z-10 inline-flex items-center gap-1.5">
+                  {link.label}
+                  {activeSection === link.href && (
+                    <span
+                      className="h-1 w-1 rounded-full bg-alpine-600"
+                      aria-hidden="true"
+                    />
+                  )}
+                </span>
               </a>
             ))}
           </nav>
@@ -136,18 +167,30 @@ export default function Navbar() {
                 </button>
               </div>
 
-              <nav className="mt-2 flex flex-col gap-1">
+              <motion.nav
+                className="mt-2 flex flex-col gap-1"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
+                }}
+              >
                 {NAV_LINKS.map((link) => (
-                  <a
+                  <motion.a
                     key={link.label}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
+                    variants={{
+                      hidden: { opacity: 0, x: -8 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                     className="rounded-2xl px-4 py-3 text-[15px] font-medium text-ink-soft transition-colors hover:bg-ridge hover:text-ink"
                   >
                     {link.label}
-                  </a>
+                  </motion.a>
                 ))}
-              </nav>
+              </motion.nav>
 
               <a
                 href="#contact"

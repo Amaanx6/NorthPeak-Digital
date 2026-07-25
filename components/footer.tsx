@@ -29,7 +29,7 @@ export function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-ink-soft transition-colors hover:text-ink"
+                    className="rounded-sm text-sm text-ink-soft transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alpine-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ridge"
                   >
                     {link.label}
                   </a>
@@ -50,7 +50,7 @@ export function Footer() {
                       aria-label={social.label}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:border-ink/30 hover:text-ink"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-soft transition-colors hover:border-ink/30 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alpine-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ridge"
                     >
                       <Icon className="h-4 w-4" aria-hidden="true" />
                     </a>
@@ -61,19 +61,19 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 text-sm text-ink-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            &copy; {year} {SITE_NAME}. All rights reserved.
-          </p>
-          <a
+       <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          &copy; {year} {SITE_NAME}. All rights reserved.
+        </p>
+           <a
             href={FOOTER_TRAINING_LINK.href}
             target="_blank"
-            rel="noreferrer"
-            className="text-ink-muted underline-offset-4 hover:text-ink hover:underline"
-          >
-            {FOOTER_TRAINING_LINK.label}
-          </a>
-        </div>
+             rel="noreferrer"
+             className="text-ink-soft underline-offset-4 hover:text-ink hover:underline"
+             >
+             {FOOTER_TRAINING_LINK.label}
+           </a>
+          </div>
       </Container>
     </footer>
   );

@@ -51,6 +51,7 @@ export function Contact() {
   const [values, setValues] = useState<ContactFormValues>(INITIAL_VALUES);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [showToast, setShowToast] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange =
     (field: keyof ContactFormValues) =>
@@ -64,8 +65,12 @@ export function Contact() {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      setValues(INITIAL_VALUES);
-      setShowToast(true);
+      setSubmitting(true);
+      window.setTimeout(() => {
+        setSubmitting(false);
+        setValues(INITIAL_VALUES);
+        setShowToast(true);
+      }, 700);
     }
   };
 
@@ -82,7 +87,18 @@ export function Contact() {
             directly — no forms disappearing into a queue.
           </p>
 
-          <ul className="mt-10 space-y-5">
+          <ul className="mt-6 flex flex-wrap gap-2" aria-label="Ways we can help">
+            {["Discovery call", "Architecture review", "Project estimate"].map((item) => (
+              <li
+                key={item}
+                className="rounded-pill border border-line bg-card px-3 py-1.5 text-xs font-medium text-ink-soft"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <ul className="mt-8 space-y-5">
             {CONTACT_DETAILS.map((detail) => {
               const Icon = detail.icon;
               return (
@@ -187,8 +203,14 @@ export function Contact() {
               </div>
 
               <div className="sm:col-span-2">
-                <Button type="submit" size="lg" variant="signal" className="w-full sm:w-auto">
-                  Send message
+                <Button
+                  type="submit"
+                  size="lg"
+                  variant="signal"
+                  disabled={submitting}
+                  className="w-full sm:w-auto"
+                >
+                  {submitting ? "Sending…" : "Send message"}
                   <Send className="h-4 w-4" aria-hidden="true" />
                 </Button>
               </div>

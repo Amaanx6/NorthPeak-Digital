@@ -37,12 +37,12 @@ export function Hero() {
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button asChild size="lg" variant="signal">
-              <a href="#contact">
-                Start a project
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </Button>
+            <Button asChild size="lg" variant="signal" className="bg-alpine-800 hover:bg-alpine-900">
+            <a href="#contact">
+              Start a project
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </Button>
             <Button asChild size="lg" variant="outline">
               <a href="#work">
                 <PlayCircle className="h-4 w-4" aria-hidden="true" />
