@@ -47,8 +47,8 @@ export function FloatingField(props: FloatingFieldProps) {
   const floated = focused || filled;
 
   const sharedClassName = cn(
-    "peer w-full rounded-xl border bg-paper px-4 pb-2.5 pt-6 text-sm text-ink outline-none transition-colors duration-200",
-    "focus:border-alpine-500",
+    "peer w-full rounded-xl border bg-paper px-4 pb-2.5 pt-6 text-sm text-ink outline-none transition-all duration-200",
+    "focus:border-alpine-500 focus:shadow-[0_0_0_4px_rgba(127,152,124,0.16),0_2px_8px_rgba(31,31,28,0.06)]",
     invalid ? "border-signal" : "border-line",
     multiline && "min-h-[128px] resize-none",
     className

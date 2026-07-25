@@ -19,7 +19,7 @@ const config: Config = {
         "line-dark": "rgba(247,245,239,0.10)",
         ink: "#1F1F1C",
         "ink-soft": "#5D5A54",
-        "ink-muted": "#8A857C",
+        "ink-muted": "#6E675C",
         night: "#1B1A16",
         "night-soft": "#26241E",
         alpine: {

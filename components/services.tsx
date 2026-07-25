@@ -30,6 +30,9 @@ export function Services() {
       <AnimatePresence mode="wait">
         <motion.div
           key={service.title}
+          id={`service-details-${index}`}
+          role="region"
+          aria-label={`${service.title} details`}
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 24 }}
@@ -133,19 +136,34 @@ export function Services() {
                     >
                       <Card
                         hoverable
+                        role="button"
+                        tabIndex={0}
+                        aria-expanded={selected === index}
+                        aria-controls={`service-details-${index}`}
+                        aria-label={`${
+                          selected === index ? "Hide" : "Show"
+                        } details for ${service.title}`}
                         onClick={() =>
                           setSelected(
                             selected === index ? null : index
                           )
                         }
-                        className={`group h-full cursor-pointer transition-all ${
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            setSelected(
+                              selected === index ? null : index
+                            );
+                          }
+                        }}
+                        className={`group h-full cursor-pointer transition-all duration-300 ease-premium hover:-translate-y-1.5 hover:shadow-elevate-lg hover:border-alpine-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alpine-400 focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
                           selected === index
                             ? "border-alpine-600 ring-1 ring-alpine-600"
                             : ""
                         }`}
                       >
                         <div className="flex items-start justify-between">
-                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-alpine-50 text-alpine-700 transition-colors duration-300 group-hover:bg-alpine-600 group-hover:text-paper">
+                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-alpine-50 text-alpine-700 transition-all duration-300 group-hover:rotate-6 group-hover:bg-alpine-600 group-hover:text-paper">
                             <Icon className="h-5 w-5" />
                           </div>
 
@@ -161,9 +179,13 @@ export function Services() {
                         </p>
 
                         <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-alpine-700">
-                          Learn more
+                          <span className="relative">
+                            Learn more
+                            <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-alpine-700 transition-all duration-300 group-hover:w-full" />
+                          </span>
 
                           <ArrowRight
+                            aria-hidden="true"
                             className={`h-4 w-4 transition-transform duration-300 ${
                               selected === index
                                 ? "rotate-90"
