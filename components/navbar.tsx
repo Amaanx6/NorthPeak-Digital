@@ -64,13 +64,12 @@ export default function Navbar() {
             scrolled ? "shadow-elevate" : ""
           }`}
         >
-          <a href="#top" className="flex shrink-0 items-center gap-2 pl-2">
+          <a href="#top" className="flex shrink-0 items-center gap-2 pl-2" aria-label="NorthPeak Digital Home">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-alpine-600 text-paper">
               <Mountain className="h-[18px] w-[18px]" />
             </span>
-
-            <span className="hidden font-display text-[15px] font-semibold tracking-tight text-ink sm:inline">
-              {SITE_NAME}
+                <span className="hidden font-display text-[15px] font-semibold tracking-tight text-ink sm:inline">
+                {SITE_NAME}
             </span>
           </a>
 

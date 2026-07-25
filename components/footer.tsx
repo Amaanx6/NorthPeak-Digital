@@ -61,19 +61,19 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 text-sm text-ink-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            &copy; {year} {SITE_NAME}. All rights reserved.
-          </p>
-          <a
+       <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          &copy; {year} {SITE_NAME}. All rights reserved.
+        </p>
+           <a
             href={FOOTER_TRAINING_LINK.href}
             target="_blank"
-            rel="noreferrer"
-            className="text-ink-muted underline-offset-4 hover:text-ink hover:underline"
-          >
-            {FOOTER_TRAINING_LINK.label}
-          </a>
-        </div>
+             rel="noreferrer"
+             className="text-ink-soft underline-offset-4 hover:text-ink hover:underline"
+             >
+             {FOOTER_TRAINING_LINK.label}
+           </a>
+          </div>
       </Container>
     </footer>
   );
