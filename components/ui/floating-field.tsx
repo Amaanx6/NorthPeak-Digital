@@ -57,8 +57,9 @@ export function FloatingField(props: FloatingFieldProps) {
   return (
     <div className="relative">
       {multiline ? (
+        // Narrow fieldProps to textarea-specific props to satisfy TS
         <textarea
-          {...fieldProps}
+          {...(fieldProps as Omit<TextareaProps, "multiline">)}
           id={id}
           className={sharedClassName}
           aria-invalid={invalid}
@@ -68,7 +69,7 @@ export function FloatingField(props: FloatingFieldProps) {
         />
       ) : (
         <input
-          {...fieldProps}
+          {...(fieldProps as Omit<InputProps, "multiline">)}
           id={id}
           className={sharedClassName}
           aria-invalid={invalid}
