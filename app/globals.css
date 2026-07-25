@@ -50,6 +50,31 @@
     content: "";
     @apply h-1 w-1 rounded-full bg-alpine-300;
   }
+
+  /* Light-surface glass panel — used for floating cards, hero accents. */
+  .glass-panel {
+    @apply rounded-2xl border border-ink/[0.07] bg-paper/85 shadow-card backdrop-blur-md;
+  }
+
+  /* Dark-surface glass panel — dashboard mockups, night-toned sections. */
+  .glass-panel-dark {
+    @apply rounded-2xl border border-line-dark bg-white/[0.04] shadow-card-dark backdrop-blur-md;
+  }
+
+  /* Animated underline for inline text links — replaces one-off span+absolute markup. */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-0 bg-current transition-all duration-300 ease-in-out;
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    @apply w-full;
+  }
 }
 
 @layer utilities {
@@ -88,8 +113,21 @@
     opacity: 0.02;
   }
 
+  /* Soft gradient hairline for section transitions — replaces hard borders. */
+  .divider-fade {
+    background: linear-gradient(to right, transparent, rgba(31, 31, 28, 0.12), transparent);
+  }
+
+  .divider-fade-dark {
+    background: linear-gradient(to right, transparent, rgba(247, 245, 239, 0.14), transparent);
+  }
+
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
   }
 }
 

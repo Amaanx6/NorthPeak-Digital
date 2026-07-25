@@ -2,8 +2,13 @@
 
 import { motion } from "framer-motion";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
-import { Reveal, RevealGroup, FADE_UP } from "@/components/ui/reveal";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 import { METRICS } from "@/data/site";
+
+const SCALE_FADE = {
+  hidden: { opacity: 0, scale: 0.94 },
+  visible: { opacity: 1, scale: 1 },
+};
 
 export function Metrics() {
   return (
@@ -24,7 +29,12 @@ export function Metrics() {
           staggerDelay={0.12}
         >
           {METRICS.map((metric) => (
-            <motion.div key={metric.label} variants={FADE_UP} transition={{ duration: 0.5, ease: "easeOut" }}>
+            <motion.div
+              key={metric.label}
+              variants={SCALE_FADE}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
               <p className="font-display text-4xl font-semibold tracking-tight text-paper sm:text-5xl lg:text-6xl">
                 <AnimatedCounter value={metric.value} suffix={metric.suffix} decimals={metric.decimals} />
               </p>

@@ -30,7 +30,8 @@ export function Heading({
       ) : null}
       <h2
         className={cn(
-          "mt-4 text-balance font-display text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl",
+          "text-balance font-display text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl",
+          eyebrow ? "mt-3" : "mt-0",
           tone === "ink" ? "text-ink" : "text-paper"
         )}
       >
@@ -39,7 +40,7 @@ export function Heading({
       {description ? (
         <p
           className={cn(
-            "mt-4 text-lg leading-[1.7]",
+            "text-pretty mt-5 max-w-[60ch] text-lg leading-[1.7]",
             tone === "ink" ? "text-ink-soft" : "text-paper/65",
             align === "center" && "mx-auto"
           )}

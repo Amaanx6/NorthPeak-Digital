@@ -121,7 +121,7 @@ export function Services() {
 
           return (
             <div key={rowStart}>
-              <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
                 {row.services.map((service, localIndex) => {
                   const index = rowStart + localIndex;
                   const Icon = service.icon;
@@ -156,14 +156,14 @@ export function Services() {
                             );
                           }
                         }}
-                        className={`group h-full cursor-pointer transition-all duration-300 ease-premium hover:-translate-y-1.5 hover:shadow-elevate-lg hover:border-alpine-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alpine-400 focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
+                        className={`group h-full cursor-pointer transition-all duration-300 ease-premium hover:-translate-y-1.5 hover:shadow-elevate-lg hover:shadow-alpine-300/20 hover:ring-1 hover:ring-alpine-300/50 hover:border-alpine-300 motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alpine-400 focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${
                           selected === index
                             ? "border-alpine-600 ring-1 ring-alpine-600"
                             : ""
                         }`}
                       >
                         <div className="flex items-start justify-between">
-                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-alpine-50 text-alpine-700 transition-all duration-300 group-hover:rotate-6 group-hover:bg-alpine-600 group-hover:text-paper">
+                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-alpine-50 text-alpine-700 transition-all duration-300 group-hover:scale-105 group-hover:rotate-6 group-hover:bg-alpine-600 group-hover:text-paper motion-reduce:transform-none">
                             <Icon className="h-5 w-5" />
                           </div>
 

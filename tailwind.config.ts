@@ -53,10 +53,14 @@ const config: Config = {
       },
       boxShadow: {
         subtle: "0 1px 2px rgba(31,31,28,0.04), 0 1px 1px rgba(31,31,28,0.03)",
+        // Layered card shadow: soft top highlight (glass edge) + ambient depth.
+        card: "inset 0 1px 0 rgba(255,255,255,0.55), 0 1px 2px rgba(31,31,28,0.04), 0 16px 36px -16px rgba(31,31,28,0.12)",
         elevate: "0 4px 16px rgba(31,31,28,0.05)",
         "elevate-lg": "0 12px 32px rgba(31,31,28,0.07)",
         glow: "0 0 0 1px rgba(127,152,124,0.25), 0 20px 40px rgba(31,31,28,0.12)",
         capsule: "0 8px 24px rgba(31,31,28,0.06), inset 0 1px 0 rgba(255,255,255,0.5)",
+        // Dark-surface glass card (used for the Featured Work / dashboard panels).
+        "card-dark": "inset 0 1px 0 rgba(255,255,255,0.06), 0 16px 36px -16px rgba(0,0,0,0.4)",
       },
       transitionTimingFunction: {
         premium: "cubic-bezier(0.16, 1, 0.3, 1)",
