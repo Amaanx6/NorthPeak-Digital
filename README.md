@@ -1,46 +1,90 @@
-# NorthPeak Digital — Redesign
 
-A full visual redesign of the NorthPeak Digital site, restyled around a warm,
-editorial, minimal design system (inspired by the *feeling* of Digital Heroes —
-not its layout, copy, or branding).
+# NorthPeak Digital
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
+![React](https://img.shields.io/badge/React-19-61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3-38BDF8)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-## Setup
+A modern, responsive one-page agency website built as part of the **Digital Heroes Internship Qualification Task**.
+
+## Live Demo
+
+🔗 https://north-peak-digital-sigma.vercel.app/
+
+## Tech Stack
+
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+
+## Features
+
+- Responsive design for mobile, tablet, and desktop
+- Modern SaaS-inspired UI
+- Animated hero and scroll interactions
+- Featured work showcase
+- Metrics section with animated counters
+- Pricing plans
+- Client testimonials
+- Contact form with client-side validation
+- Semantic HTML and accessible components
+
+## Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/northpeak-digital.git
+```
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Run the development server:
+
+```bash
 npm run dev
 ```
 
-## What changed
+Create a production build:
 
-**Palette** — swapped the cool blue/dark theme for a warm neutral system:
-paper `#F3F0E8`, ridge `#F7F5EF`, card `#FBFAF7`, ink `#1F1F1C`, sage-green
-accent `#7F987C` / `#6D8769` on hover, and a muted gold (`signal`) reserved
-for small highlights like ratings and the "most popular" tag.
+```bash
+npm run build
+```
 
-**Typography** — Manrope (medium/semibold only, never heavy) for display
-headings, Inter for body copy, IBM Plex Mono for eyebrows and small labels —
-distinct from the original Space Grotesk pairing.
+Start the production server:
 
-**Navbar** — rebuilt as a floating pill capsule: thin border, soft shadow,
-circular logo mark and menu button, a small sliding hover-pill instead of a
-glassy gradient bar.
+```bash
+npm start
+```
 
-**Cards & buttons** — 24–32px corner radii, 1px borders, soft shadows instead
-of glassmorphism; buttons are fully pill-shaped, gradient-free, solid sage for
-primary actions.
+## Project Structure
 
-**Signature element** — a topographic "elevation mark" (contour rings, a
-center point, cardinal tick marks) ties back to the NorthPeak name and gives
-the hero one memorable, on-brief visual rather than a generic gradient blob.
+```
+src/
+├── app/
+├── components/
+├── data/
+├── lib/
+└── types/
+```
 
-**Components** — consolidated into a small reusable set:
-`Button`, `Card`, `Badge`, `Section`, `Container`, `Heading`, plus the existing
-`Reveal`, `FloatingField`, `Toast`, `AnimatedCounter`.
+## Lighthouse Goals
 
-**Motion** — kept every animation from the original (Framer Motion reveals,
-hover pill, animated counters) but tuned easing/scale so nothing overshoots or
-bounces — fades and small translations only, per the brief.
+- Performance: 90+
+- Accessibility: 90+
+- Best Practices: 95+
+- SEO: 95+
 
-All original functionality (form validation, toast, animated counters, mobile
-nav, section anchors) is preserved.
+## Credits
+
+Built for the **Digital Heroes Internship Qualification Task**.
+
+Digital Heroes: https://digitalheroesco.com
